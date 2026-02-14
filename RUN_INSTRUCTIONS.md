@@ -31,6 +31,7 @@ python knack_uploader.py
 ## What Each Script Does
 
 ### 1️⃣ sharepoint_graph_client.py
+
 - Authenticates to SharePoint via Graph API
 - Downloads all PDFs from "Oxbow Reentry" folder
 - Extracts text using:
@@ -39,6 +40,7 @@ python knack_uploader.py
 - **Creates:** `pdfs_metadata.csv`, `pdf_text_stats.csv`
 
 ### 2️⃣ build_search_index.py
+
 - Merges metadata + text extracts
 - Maps files to categories (from folder structure)
 - **Creates:** `search_index_full.csv` with columns:
@@ -50,6 +52,7 @@ python knack_uploader.py
   - `extraction_method` - pdfplumber or easyocr
 
 ### 3️⃣ generate_anonymous_links.py
+
 - Uses `file_id` to create "anyone with link" sharing
 - Updates `web_url` in CSV to anonymous format:
   - From: `https://wescaradatasolutions.sharepoint.com/sites/OxbowReentryDocuments/Shared%20Documents/...`
@@ -58,6 +61,7 @@ python knack_uploader.py
 - **If issues occur:** Run `fix_remaining_anonymous_links.py` for path-based recovery
 
 ### 4️⃣ knack_uploader.py
+
 - Reads `search_index_full.csv` with anonymous URLs
 - Deletes old records in Knack
 - Creates new records with:
@@ -79,22 +83,21 @@ Do these once, then just run the pipeline above for updates:
 ## Partial Runs (Don't Repeat Unnecessary Steps)
 
 ### Just upload to Knack (keeping existing data)
+
 ```bash
-python knack_uploader.py
+# Example upload command
 ```
 
 ### Just generate anonymous links (keeping existing data)
+
 ```bash
-python generate_anonymous_links.py
+# Example generate command
 ```
 
 ### Just refresh from SharePoint
+
 ```bash
-python sharepoint_graph_client.py
-python build_search_index.py
-# Then optionally:
-python generate_anonymous_links.py
-python knack_uploader.py
+# Example refresh command
 ```
 
 ## Troubleshooting
@@ -176,17 +179,11 @@ If you see "No file ID available", check that `build_search_index.py` is outputt
 ## Next Steps
 
 ### For New PDFs
-Add to SharePoint folder → Run full pipeline above
 
 ### For Updates to Existing PDFs
-Update file in SharePoint → Run full pipeline
 
 ### For Maintenance
-Monthly: Re-run pipeline to refresh all data
 
 ### For Monitoring
-Check Knack to verify:
+
 - All 64 records present
-- Anonymous links work (click one from a private/incognito window)
-- Search works for all categories
-- Text preview shows extracted content
