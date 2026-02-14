@@ -1,0 +1,44 @@
+# Ignore local env files with secrets
+.env
+
+# Python virtualenv
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Ignore large files
+venv/
+downloads/Oxbow Reentry/
+
+# Ensure __pycache__ in venv and site-packages isn't tracked
+**/__pycache__/
+
+# Virtual environments
+venv/
+.envrc
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
