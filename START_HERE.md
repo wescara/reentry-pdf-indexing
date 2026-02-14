@@ -106,7 +106,7 @@ python test_sharepoint_connection.py
 
 If it fails, the script will tell you exactly what's wrong.
 
-### Step 3: Run (5-30 minutes depending on options)
+### Step 3: Run (5-30 minutes depending on options) - TEST ADDED
 ```bash
 # Get PDFs from SharePoint
 python sharepoint_graph_client.py
