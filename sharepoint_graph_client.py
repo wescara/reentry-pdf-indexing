@@ -26,6 +26,7 @@ import csv
 import time
 import logging
 import glob
+import json
 import shutil
 import warnings
 from typing import Dict, Any, Optional, List, Tuple
@@ -362,9 +363,9 @@ def filter_files(items: list, extensions: tuple = (".pdf",)) -> list:
 # ----------------------------
 def cleanup_old_timestamped_files(base_dir: str = "."):
     """
-    Delete old timestamped CSV files and .txt extracts to keep directory clean.
+    Delete old timestamped CSV files to keep directory clean.
+    Does NOT delete .txt extracts — those are used by the file cache.
     """
-    # Delete timestamped CSV files
     for pattern in ["pdf_index_*.csv", "pdf_text_index_*.csv"]:
         for file in glob.glob(os.path.join(base_dir, pattern)):
             try:
@@ -372,16 +373,6 @@ def cleanup_old_timestamped_files(base_dir: str = "."):
                 logger.info(f"Deleted old timestamped file: {file}")
             except Exception as ex:
                 logger.warning(f"Failed to delete {file}: {ex}")
-    
-    # Delete .txt extract files from downloads folder
-    downloads_dir = os.path.join(base_dir, DOWNLOAD_DIR)
-    if os.path.exists(downloads_dir):
-        for txt_file in glob.glob(os.path.join(downloads_dir, "**/*.txt"), recursive=True):
-            try:
-                os.remove(txt_file)
-                logger.info(f"Deleted text extract: {txt_file}")
-            except Exception as ex:
-                logger.warning(f"Failed to delete {txt_file}: {ex}")
 
 
 def format_file_size(size_bytes: int) -> str:
@@ -478,6 +469,42 @@ def sanitize_filename(filename: str) -> str:
     result = ' '.join(result.split())
     
     return result
+
+
+# ----------------------------
+# File Cache (skip unchanged files)
+# ----------------------------
+CACHE_FILE = ".file_cache.json"
+
+
+def load_file_cache() -> dict:
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            return {}
+    return {}
+
+
+def save_file_cache(cache: dict):
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2)
+
+
+def is_file_unchanged(item: dict, local_path: str, cache: dict) -> bool:
+    """Return True if the file hasn't changed since last successful extraction."""
+    file_id = item.get("id", "")
+    modified = item.get("lastModifiedDateTime", "")
+    txt_path = local_path + ".txt"
+    cached = cache.get(file_id)
+    if not cached:
+        return False
+    return (
+        cached.get("lastModified") == modified
+        and os.path.exists(local_path)
+        and os.path.exists(txt_path)
+    )
 
 
 def local_path_for_item(download_dir: str, item: dict) -> str:
@@ -654,9 +681,30 @@ def main():
         # --- Download & extract text (optional) ---
         if EXTRACT_TEXT:
             ensure_dir(DOWNLOAD_DIR)
+            file_cache = load_file_cache()
             text_rows = []
+            skipped = 0
             for idx, item in enumerate(pdfs, start=1):
                 local_path = local_path_for_item(DOWNLOAD_DIR, item)
+
+                if is_file_unchanged(item, local_path, file_cache):
+                    skipped += 1
+                    # Still include in text_rows from existing .txt
+                    txt_path = local_path + ".txt"
+                    cached_entry = file_cache[item["id"]]
+                    text_rows.append({
+                        "name": item.get("name"),
+                        "id": item.get("id"),
+                        "local_path": local_path,
+                        "parentPath": item.get("parentReference", {}).get("path"),
+                        "page_count": cached_entry.get("page_count", 0),
+                        "text_chars": cached_entry.get("text_chars", 0),
+                        "extraction_method": cached_entry.get("extraction_method", ""),
+                        "needs_ocr": cached_entry.get("needs_ocr", False),
+                    })
+                    print(f"({idx}/{len(pdfs)}) Skipped (unchanged) -> {item.get('name')}")
+                    continue
+
                 print(f"({idx}/{len(pdfs)}) Downloading -> {local_path}")
                 try:
                     download_pdf_by_item_id(site_id, item["id"], token, local_path)
@@ -665,7 +713,7 @@ def main():
                     continue
 
                 pages, chars, text, extraction_method = extract_text_from_pdf(local_path)
-                needs_ocr = (chars < 50)  # heuristic: very little text => likely scanned image
+                needs_ocr = (chars < 50)
                 if extraction_method == "easyocr":
                     print(f"  [OCR] Extracted {chars} chars via EasyOCR")
                 text_rows.append({
@@ -679,13 +727,26 @@ def main():
                     "needs_ocr": needs_ocr,
                 })
 
-                # Save per-file text alongside PDF (optional)
+                # Save per-file text alongside PDF
                 txt_path = local_path + ".txt"
                 try:
                     with open(txt_path, "w", encoding="utf-8") as f:
                         f.write(text)
                 except Exception as ex:
                     logger.warning("Failed to save text file '%s': %s", txt_path, ex)
+
+                # Update cache for this file
+                file_cache[item["id"]] = {
+                    "lastModified": item.get("lastModifiedDateTime", ""),
+                    "page_count": pages,
+                    "text_chars": chars,
+                    "extraction_method": extraction_method,
+                    "needs_ocr": needs_ocr,
+                }
+
+            save_file_cache(file_cache)
+            if skipped:
+                print(f"\n=== Skipped {skipped}/{len(pdfs)} unchanged files ===")
 
             # Save text CSV
             save_pdfs_text_to_csv(text_rows)

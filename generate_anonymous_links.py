@@ -231,9 +231,9 @@ def update_search_index_with_anonymous_links(site_id: str, token: str):
             writer.writeheader()
             writer.writerows(rows)
     
-    logger.info(f"✓ Updated {updated_count}/{len(rows)} URLs with anonymous links")
-    logger.info(f"✓ Skipped {skipped_count} (already have anonymous links or no ID)")
-    print(f"\n✓ Completed! Updated {updated_count} files with anonymous sharing links")
+    logger.info(f"Updated {updated_count}/{len(rows)} URLs with anonymous links")
+    logger.info(f"Skipped {skipped_count} (already have anonymous links or no ID)")
+    print(f"\nCompleted! Updated {updated_count} files with anonymous sharing links")
     print(f"  All links now work for users without SharePoint accounts")
 
 

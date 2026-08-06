@@ -42,6 +42,15 @@ def main():
     print("Step 4: Upload to Knack")
     run_script('knack_uploader.py')
 
+    print("Step 5: Repair missing top-section category hyperlinks in Knack")
+    run_script('repair_reentry_category_links.py')
+
+    print("Step 6: Repair missing top-section category descriptions in Knack")
+    run_script('repair_reentry_category_descriptions.py')
+
+    print("Step 7: Repair document links in Knack")
+    run_script('repair_reentry_document_links.py')
+
     print("Pipeline completed successfully.")
 
 if __name__ == "__main__":

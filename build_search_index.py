@@ -137,6 +137,8 @@ KNACK_CATEGORIES = {
     "Bicycles",
     "Cell Phones and Computers",
     "Church Incarceration Resources",
+    "Community Resource Lists",
+    "Courts (How to Navigate Court Cases)",
     "Education/Training",
     "Employment",
     "Federal and ICE",
@@ -147,10 +149,31 @@ KNACK_CATEGORIES = {
     "Other County Jails",
     "Oxbow Jail Info",
     "Sex Offender Resources",
+    "TAM - Medicaid",
     "TSO and Church Support for Homeless Shelters",
     "Utah State Prison",
+    "Veteran Resources",
+    "Women’s Resources",
     "Women's Resources",
 }
+
+
+def normalize_category_name(name: str) -> str:
+    """Normalize category names to handle apostrophe/whitespace variants."""
+    if not isinstance(name, str):
+        return ""
+    normalized = " ".join(name.strip().split())
+    # Normalize curly apostrophe to straight for matching.
+    normalized = normalized.replace("’", "'")
+    return normalized
+
+
+CANONICAL_CATEGORY_BY_NORMALIZED = {
+    normalize_category_name(category): category
+    for category in KNACK_CATEGORIES
+}
+# Prefer typographic apostrophe for output consistency.
+CANONICAL_CATEGORY_BY_NORMALIZED["Women's Resources"] = "Women’s Resources"
 
 
 def clean_extracted_text(text: str) -> str:
@@ -243,8 +266,6 @@ def extract_parent_category(parent_path: str) -> Optional[str]:
     Example:
     "/drive/root:/Oxbow Reentry/Health" -> "Health"
     "/drive/root:/Oxbow Reentry/Addiction Recovery/CATS" -> "Addiction Recovery"
-    
-    Returns the best-matching category from KNACK_CATEGORIES, or None.
     """
     if not parent_path:
         return None
@@ -255,9 +276,7 @@ def extract_parent_category(parent_path: str) -> Optional[str]:
     
     # Skip "Oxbow Reentry" and get the next part
     if len(parts) > 1 and parts[0] == "Oxbow Reentry":
-        potential_category = parts[1]
-        if potential_category in KNACK_CATEGORIES:
-            return potential_category
+        return parts[1]
     
     return None
 
@@ -296,8 +315,8 @@ def build_search_index() -> pd.DataFrame:
     logger.info(f"Reading {TEXT_STATS_CSV}...")
     text_df = pd.read_csv(TEXT_STATS_CSV)
     
-    # Merge on filename
-    merged = meta_df.merge(text_df, on="name", how="inner")
+    # Merge on file ID (unique per file on SharePoint)
+    merged = meta_df.merge(text_df, on=["name", "id"], how="inner")
     logger.info(f"Merged {len(merged)} records from both CSVs")
     
     # Extract parent category and read text content
@@ -327,7 +346,7 @@ def build_search_index() -> pd.DataFrame:
             "last_modified": row.get("lastModifiedDateTime"),
             "extraction_method": row.get("extraction_method", "pdfplumber"),  # Add extraction method
             "web_url": file_url,  # Direct SharePoint file URL
-            "file_id": row.get("id_x"),  # Fix: use id_x from metadata (id from pdfs_metadata.csv)
+            "file_id": row.get("id"),
             "local_path": local_path,
             "extracted_text": extracted_text,
         }

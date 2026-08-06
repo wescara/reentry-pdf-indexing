@@ -26,6 +26,7 @@ import sys
 import time
 import logging
 import csv
+import argparse
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 
@@ -37,6 +38,15 @@ from dotenv import load_dotenv, find_dotenv
 # Load environment (.env)
 # ----------------------------
 load_dotenv(find_dotenv())
+
+
+def _first_env(*names: str) -> Tuple[Optional[str], Optional[str]]:
+    """Return first non-empty env value and the variable name used."""
+    for name in names:
+        value = os.getenv(name)
+        if value and value.strip():
+            return value.strip(), name
+    return None, None
 
 # ----------------------------
 # Logging
@@ -50,11 +60,17 @@ logger = logging.getLogger(__name__)
 # ----------------------------
 # Config from environment
 # ----------------------------
-KNACK_API_KEY = os.getenv("KNACK_API_KEY")
-KNACK_APP_ID = os.getenv("KNACK_APP_ID")
+KNACK_API_KEY, KNACK_API_KEY_SOURCE = _first_env(
+    "KNACK_API_KEY",
+    "KNACK_REST_API_KEY",
+)
+KNACK_APP_ID, KNACK_APP_ID_SOURCE = _first_env(
+    "KNACK_APP_ID",
+    "KNACK_APPLICATION_ID",
+)
 REENTRY_TABLE_ID = "object_13"
 REENTRY_DOCS_TABLE_ID = "object_14"
-KNACK_API_BASE = "https://api.knack.com/v1"
+KNACK_API_BASE = (os.getenv("KNACK_API_URL") or "https://api.knack.com/v1").rstrip("/")
 
 # Field IDs for Reentry Documents table
 FIELD_FILENAME = "field_166"
@@ -79,14 +95,21 @@ USE_SHAREPOINT = os.getenv("USE_SHAREPOINT", "false").lower() in ("1", "true", "
 DEFAULT_TIMEOUT = 30  # seconds
 
 
+def _looks_like_placeholder(value: Optional[str]) -> bool:
+    if not value:
+        return True
+    lowered = value.strip().lower()
+    return lowered.startswith("your_") or "replace" in lowered or "example" in lowered
+
+
 def validate_config(require_credentials: bool = True):
     """Ensure required configuration is present before proceeding."""
     missing = []
     if require_credentials:
         if not KNACK_API_KEY:
-            missing.append("KNACK_API_KEY")
+            missing.append("KNACK_API_KEY (or KNACK_REST_API_KEY)")
         if not KNACK_APP_ID:
-            missing.append("KNACK_APP_ID")
+            missing.append("KNACK_APP_ID (or KNACK_APPLICATION_ID)")
     if not REENTRY_TABLE_ID:
         missing.append("REENTRY_TABLE_ID")
     if not REENTRY_DOCS_TABLE_ID:
@@ -98,6 +121,20 @@ def validate_config(require_credentials: bool = True):
             + ", ".join(missing)
             + "\n\nFix:\n"
             "- Ensure your .env file (in project root) contains these keys with values.\n"
+        )
+
+    placeholder_fields = []
+    if _looks_like_placeholder(KNACK_API_KEY):
+        placeholder_fields.append(KNACK_API_KEY_SOURCE or "KNACK_API_KEY")
+    if _looks_like_placeholder(KNACK_APP_ID):
+        placeholder_fields.append(KNACK_APP_ID_SOURCE or "KNACK_APP_ID")
+
+    if placeholder_fields:
+        raise RuntimeError(
+            "Credential values look like placeholders for: "
+            + ", ".join(placeholder_fields)
+            + "\n\nFix:\n"
+            "- Set real Knack values in .env (not sample text like your_xxx).\n"
         )
 
 
@@ -131,6 +168,20 @@ def knack_request(
             except:
                 error_detail = response.text[:500]
             logger.error(f"Knack API {response.status_code}: {error_detail}")
+
+        if response.status_code == 401:
+            detail_text = response.text.lower()
+            raise RuntimeError(
+                "Knack authentication failed (401 Unauthorized). "
+                f"API key source: {KNACK_API_KEY_SOURCE or 'not set'}, "
+                f"app id source: {KNACK_APP_ID_SOURCE or 'not set'}.\n"
+                "Fix:\n"
+                "- Verify KNACK_API_KEY / KNACK_REST_API_KEY in .env is the correct Knack REST API key.\n"
+                "- Verify KNACK_APP_ID / KNACK_APPLICATION_ID matches the target Knack app.\n"
+                "- Ensure there are no quotes or trailing spaces in .env values.\n"
+                f"- Endpoint used: {url}\n"
+                + ("- Knack reported 'Invalid API Key'.\n" if "invalid api key" in detail_text else "")
+            )
         
         response.raise_for_status()
         return response.json() if response.text else {}
@@ -205,6 +256,77 @@ def get_reentry_category_map() -> Dict[str, str]:
     return category_map
 
 
+def _normalize_category(value) -> str:
+    """Normalize category values from CSV for reliable comparisons."""
+    if pd.isna(value):
+        return ""
+    category = str(value).strip()
+    if category.lower() in ("", "nan", "none"):
+        return ""
+    return category
+
+
+def create_missing_categories(missing: List[str], category_map: Dict[str, str]) -> Dict[str, str]:
+    """Create missing categories in Knack's Reentry table (object_13) and return updated map."""
+    for name in missing:
+        logger.info(f"Creating new Knack category: {name}")
+        data = {"field_162": name}
+        try:
+            resp = knack_request("POST", f"/objects/{REENTRY_TABLE_ID}/records", data=data)
+            record_id = resp.get("id")
+            if record_id:
+                category_map[name] = record_id
+                logger.info(f"  Created: {name} -> {record_id}")
+            else:
+                logger.warning(f"  No record ID returned for: {name}")
+        except Exception as e:
+            logger.error(f"  Failed to create category '{name}': {e}")
+    return category_map
+
+
+def validate_reentry_categories_for_upload(
+    pdf_records: List[Dict],
+    category_map: Dict[str, str],
+    fail_on_missing: bool = True,
+) -> List[str]:
+    """
+    Validate that all categories used by the search index exist in Reentry (object_13).
+    Auto-creates missing categories in Knack.
+    Returns sorted list of categories that were created.
+    """
+    csv_categories = {
+        _normalize_category(record.get("parent_category")) or "Uncategorized"
+        for record in pdf_records
+    }
+    missing = sorted(category for category in csv_categories if category not in category_map)
+
+    if missing:
+        logger.info(f"New categories found: {missing}")
+        create_missing_categories(missing, category_map)
+
+    return missing
+
+
+def run_preflight(allow_missing_categories: bool = False):
+    """Run fast checks for credentials, auth, CSV readability, and category coverage."""
+    logger.info("Running preflight checks...")
+    validate_config(require_credentials=True)
+    category_map = get_reentry_category_map()  # Also validates Knack auth
+    pdf_records = read_search_index(limit=None)
+    missing = validate_reentry_categories_for_upload(
+        pdf_records,
+        category_map,
+        fail_on_missing=not allow_missing_categories,
+    )
+
+    logger.info("=" * 70)
+    logger.info("✅ Preflight passed")
+    logger.info(f"   Knack categories loaded: {len(category_map)}")
+    logger.info(f"   PDF records in CSV: {len(pdf_records)}")
+    logger.info(f"   Missing categories: {len(missing)}")
+    logger.info("=" * 70)
+
+
 def build_knack_records(
     pdf_records: List[Dict],
     category_map: Dict[str, str],
@@ -230,13 +352,15 @@ def build_knack_records(
     ]
     
     for pdf in pdf_records:
-        category = pdf.get("parent_category", "")
-        
-        # Verify category exists in Reentry table
+        category_raw = pdf.get("parent_category", "")
+        if pd.isna(category_raw) or str(category_raw).strip().lower() in ("", "nan", "none"):
+            category = "Uncategorized"
+        else:
+            category = str(category_raw).strip()
+
+        # Field_175 is short text, so unknown categories are allowed.
         if category not in category_map:
             missing_categories.add(category)
-            logger.warning(f"Category '{category}' not found in Reentry table")
-            continue  # Skip this record if category doesn't exist
         
         full_text = pdf.get("extracted_text", "")
         
@@ -269,7 +393,10 @@ def build_knack_records(
         knack_records.append(knack_record)
     
     if missing_categories:
-        logger.warning(f"Skipped records for missing categories: {missing_categories}")
+        logger.warning(
+            "Categories not found in Reentry lookup but uploaded as text: "
+            f"{sorted(missing_categories)}"
+        )
     
     logger.info(f"Built {len(knack_records)} Knack records from {len(pdf_records)} PDFs")
     return knack_records
@@ -323,7 +450,7 @@ def load_reentry_documents(knack_records: List[Dict]):
     return created, failed
 
 
-def main(test_limit: Optional[int] = None):
+def main(test_limit: Optional[int] = None, allow_missing_categories: bool = False):
     """Main workflow: read PDFs, truncate and load."""
     start_time = time.time()
     
@@ -335,6 +462,13 @@ def main(test_limit: Optional[int] = None):
         
         # Step 2: Read PDF data
         pdf_records = read_search_index(limit=test_limit)
+
+        # Step 2.5: Fail fast if CSV categories are not in Reentry top section
+        validate_reentry_categories_for_upload(
+            pdf_records,
+            category_map,
+            fail_on_missing=not allow_missing_categories,
+        )
         
         # Step 3: Transform to Knack format
         knack_records = build_knack_records(pdf_records, category_map)
@@ -365,5 +499,20 @@ def main(test_limit: Optional[int] = None):
 
 
 if __name__ == "__main__":
-    # Run full pipeline with all records
-    main()
+    parser = argparse.ArgumentParser(description="Upload PDF index to Knack.")
+    parser.add_argument(
+        "--preflight",
+        action="store_true",
+        help="Run credential/auth/category checks only, then exit.",
+    )
+    parser.add_argument(
+        "--allow-missing-categories",
+        action="store_true",
+        help="Allow upload to continue even when CSV categories are missing in Reentry.",
+    )
+    args = parser.parse_args()
+
+    if args.preflight:
+        run_preflight(allow_missing_categories=args.allow_missing_categories)
+    else:
+        main(allow_missing_categories=args.allow_missing_categories)

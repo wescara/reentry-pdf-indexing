@@ -1,0 +1,933 @@
+{
+  "01HFF34VKITF4RONVPNBEKI7DVHZ2VTQ7A": {
+    "lastModified": "2025-12-28T03:19:05Z",
+    "page_count": 2,
+    "text_chars": 2826,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VNUJG6JX6V5CVDZDISHEIR7ZWKP": {
+    "lastModified": "2026-05-22T22:26:35Z",
+    "page_count": 9,
+    "text_chars": 18428,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VONUXR35OWXGJF3JQETRI32VLWX": {
+    "lastModified": "2025-12-28T03:19:03Z",
+    "page_count": 6,
+    "text_chars": 25341,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKWQTW2ZLIDFVAKJQXXP4YSPOJF": {
+    "lastModified": "2025-12-28T03:19:04Z",
+    "page_count": 4,
+    "text_chars": 22695,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMVV6UDXOHIQNFYLNSRFXW4WAHE": {
+    "lastModified": "2025-12-28T03:19:12Z",
+    "page_count": 1,
+    "text_chars": 3826,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMKJ2AZ3CCIARAITK6JIEGR3D4L": {
+    "lastModified": "2025-12-28T03:19:11Z",
+    "page_count": 1,
+    "text_chars": 3043,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLASC5OMV646JEKPBF7FXHMEVDL": {
+    "lastModified": "2025-12-28T03:19:11Z",
+    "page_count": 1,
+    "text_chars": 2820,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VI6GKKC4A4Z3VCLXUSF736OODIC": {
+    "lastModified": "2025-12-28T03:19:13Z",
+    "page_count": 1,
+    "text_chars": 3320,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJV4KY2L5CCQNDLRLC2HD3E6SSS": {
+    "lastModified": "2025-12-28T03:19:10Z",
+    "page_count": 1,
+    "text_chars": 2078,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMTPQVG72YWDVDL3LEYM3PSREVK": {
+    "lastModified": "2025-12-28T03:19:08Z",
+    "page_count": 2,
+    "text_chars": 5653,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VL4RJDM6AQ7ZZDJLREXLC53RSEI": {
+    "lastModified": "2025-12-28T03:19:08Z",
+    "page_count": 2,
+    "text_chars": 1768,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VK5Z2EWLBDEVNC3KWWTDFDFJ2HU": {
+    "lastModified": "2025-12-28T03:19:00Z",
+    "page_count": 4,
+    "text_chars": 25276,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VNNCS5IRNTP65FKWVPZV2FG2FEM": {
+    "lastModified": "2025-12-28T03:19:01Z",
+    "page_count": 6,
+    "text_chars": 7936,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLRUSEEWUFJCJBZ3QDOXRBKMKAB": {
+    "lastModified": "2025-12-28T03:19:02Z",
+    "page_count": 3,
+    "text_chars": 7046,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VKKFLIDLYDGINC2HJ7D5ISCTGGS": {
+    "lastModified": "2025-12-28T03:19:03Z",
+    "page_count": 1,
+    "text_chars": 354,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLUGUFWIDEUOJAKFIWVDK5JL7EI": {
+    "lastModified": "2026-06-16T15:35:33Z",
+    "page_count": 15,
+    "text_chars": 44587,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VIRKWRITKXWZNBL5J45GQASXTZB": {
+    "lastModified": "2026-07-02T14:36:51Z",
+    "page_count": 3,
+    "text_chars": 10607,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VPUSSBYOQ2O7NEKAR6Z7O2KCNHY": {
+    "lastModified": "2026-06-26T12:59:46Z",
+    "page_count": 1,
+    "text_chars": 1017,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VO444POXS22YRAYVK4R546A5PMH": {
+    "lastModified": "2026-06-16T15:35:33Z",
+    "page_count": 18,
+    "text_chars": 29008,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPNTDGMUSN2GVD3GNHIINNLERF4": {
+    "lastModified": "2026-06-25T13:22:49Z",
+    "page_count": 5,
+    "text_chars": 8006,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VL3Q6NDCYIOUJAKRLN5EP5NYQYH": {
+    "lastModified": "2026-07-19T13:16:46Z",
+    "page_count": 3,
+    "text_chars": 3320,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKJMTQBOJUG7BDK7YN2VUM3OH36": {
+    "lastModified": "2026-07-19T13:18:01Z",
+    "page_count": 2,
+    "text_chars": 3632,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VJZ4TRFVAWIPFFYYYGAC55C7MVL": {
+    "lastModified": "2025-12-30T19:07:38Z",
+    "page_count": 6,
+    "text_chars": 3777,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLWWXHREZ2BWVCIHJS24ZIKNH3S": {
+    "lastModified": "2025-12-30T19:21:15Z",
+    "page_count": 4,
+    "text_chars": 11800,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKEC22GB56DCRDJYHZSYXIMPRZD": {
+    "lastModified": "2025-12-28T03:19:16Z",
+    "page_count": 2,
+    "text_chars": 2263,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLUTPOEB2P2WBGZVT3R3VX57HPM": {
+    "lastModified": "2025-12-28T03:19:17Z",
+    "page_count": 10,
+    "text_chars": 8376,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJ33GDI2RR6ANG24XNJ5KHRDGSC": {
+    "lastModified": "2025-12-28T03:19:15Z",
+    "page_count": 1,
+    "text_chars": 519,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKAYTSZPZIWBZH2FSAJJQ25EHAJ": {
+    "lastModified": "2026-01-29T15:52:24Z",
+    "page_count": 2,
+    "text_chars": 4017,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJLQCQ4HWLBENFIWTIOE3QRCYW3": {
+    "lastModified": "2026-05-01T18:30:20Z",
+    "page_count": 1,
+    "text_chars": 1046,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VONB57ZIIHV4FCY7TLB5NIJXD32": {
+    "lastModified": "2026-05-17T13:43:24Z",
+    "page_count": 2,
+    "text_chars": 2046,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VISWYIYLTENNNG2KKOQQIRPCRWB": {
+    "lastModified": "2026-07-27T21:11:06Z",
+    "page_count": 1,
+    "text_chars": 895,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VIRQHGNKKNOHJCL6MJDIXAEFKGZ": {
+    "lastModified": "2026-07-06T23:32:20Z",
+    "page_count": 2,
+    "text_chars": 419,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPLOBWKYEFIJFG3OXXS3BYQIPBU": {
+    "lastModified": "2025-12-28T03:19:23Z",
+    "page_count": 1,
+    "text_chars": 1350,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJW5AI3L7VBZ5F3XK3POQRQAFVA": {
+    "lastModified": "2026-07-06T23:32:19Z",
+    "page_count": 3,
+    "text_chars": 2886,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPC2ZM7ZYKCL5HKLTEURRQQDYIQ": {
+    "lastModified": "2026-07-06T23:32:19Z",
+    "page_count": 2,
+    "text_chars": 2604,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPYQF434DD4LJGIBF3IIPOEDQES": {
+    "lastModified": "2026-07-15T21:12:39Z",
+    "page_count": 2,
+    "text_chars": 2333,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VN72OFJIX4MXND2FYFN7LEIADBW": {
+    "lastModified": "2026-04-20T14:48:39Z",
+    "page_count": 1,
+    "text_chars": 365,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPBBRPYMYTL3VDJXHZVK45OMZ7Y": {
+    "lastModified": "2026-03-04T21:43:54Z",
+    "page_count": 46,
+    "text_chars": 98417,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPNOVYM4RHBMVH3OMLSPDCAJEVH": {
+    "lastModified": "2026-06-05T03:42:59Z",
+    "page_count": 3,
+    "text_chars": 2845,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VNWIFAE65X23FFJIGWIQFECNWJ7": {
+    "lastModified": "2026-06-05T00:43:43Z",
+    "page_count": 2,
+    "text_chars": 1612,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VNAKWDE7P44KJCLOLSBBVDWBHW5": {
+    "lastModified": "2026-06-10T16:27:24Z",
+    "page_count": 1,
+    "text_chars": 3301,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VK2URRC2CU6WFBYCBJFG4BJE3H3": {
+    "lastModified": "2025-12-28T03:19:06Z",
+    "page_count": 14,
+    "text_chars": 14338,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VKQLZDDBQFDTVG2PYJZKZSEC3Z4": {
+    "lastModified": "2025-12-28T03:19:04Z",
+    "page_count": 16,
+    "text_chars": 37941,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VIIEXXLUWEDURB3LEHXWDVMRAJA": {
+    "lastModified": "2026-03-05T16:33:08Z",
+    "page_count": 2,
+    "text_chars": 3887,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VNGB7RTHRSLTZEK6D4R2HQHEFKZ": {
+    "lastModified": "2025-12-28T03:19:00Z",
+    "page_count": 2,
+    "text_chars": 365,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VPXITMNVBOZ6BC3MEIT4HV7QSJE": {
+    "lastModified": "2026-01-19T18:17:44Z",
+    "page_count": 1,
+    "text_chars": 1020,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMTKQ3CPW34QNEIBHNWMU5IM32C": {
+    "lastModified": "2026-01-19T18:17:02Z",
+    "page_count": 45,
+    "text_chars": 67319,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPTYVQXXHAB6RA3CQRFKZVHVUOH": {
+    "lastModified": "2025-12-28T03:19:07Z",
+    "page_count": 1,
+    "text_chars": 430,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VL5N4LGLMTZFNH3YQTNZPG2EL3X": {
+    "lastModified": "2026-03-28T22:27:01Z",
+    "page_count": 10,
+    "text_chars": 21049,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLOHVRLMSZX4FCKRFV6CILA5NXK": {
+    "lastModified": "2026-03-28T22:26:59Z",
+    "page_count": 1,
+    "text_chars": 2276,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VONTZZLZ65HARB3TN7LGMTPAS6F": {
+    "lastModified": "2026-03-28T22:26:58Z",
+    "page_count": 1,
+    "text_chars": 2192,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPOU66SBOHBWJBI423OW5Q6QO27": {
+    "lastModified": "2026-03-28T22:26:58Z",
+    "page_count": 1,
+    "text_chars": 4139,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLKNPB7MWIZT5ELOOKHGELV23I5": {
+    "lastModified": "2026-03-28T22:26:59Z",
+    "page_count": 2,
+    "text_chars": 2505,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLLUAJC47KCXBGKASME5MYBYOIY": {
+    "lastModified": "2026-03-28T22:26:56Z",
+    "page_count": 1,
+    "text_chars": 301,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VJ3FRCEF6547ZGZZMPBFMYXE5ZC": {
+    "lastModified": "2026-07-01T23:08:07Z",
+    "page_count": 2,
+    "text_chars": 3645,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VKKYDALXOL76NFY57J23FTOZY7O": {
+    "lastModified": "2026-07-01T23:07:47Z",
+    "page_count": 1,
+    "text_chars": 1792,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMNSBKEXIX4XNHKVNOEV2NASSO2": {
+    "lastModified": "2026-02-19T18:57:30Z",
+    "page_count": 2,
+    "text_chars": 10508,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VO3JHCLRP3VGRGIBVGZAGB4M7DL": {
+    "lastModified": "2026-02-19T18:57:30Z",
+    "page_count": 2,
+    "text_chars": 8152,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VIJ6PNJM3H5MNG3ECVXOQU26OMS": {
+    "lastModified": "2026-02-19T18:57:29Z",
+    "page_count": 1,
+    "text_chars": 5352,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VOKW2HA3K2AX5BLRTEGD2M7ZPMY": {
+    "lastModified": "2026-02-19T18:57:30Z",
+    "page_count": 2,
+    "text_chars": 5738,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJM4DJLE4EXHBF3NURKTIWBK44O": {
+    "lastModified": "2026-02-19T18:57:29Z",
+    "page_count": 2,
+    "text_chars": 9677,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJAKOPGA4CLPNC3W34TZWF52JN2": {
+    "lastModified": "2026-02-19T18:57:34Z",
+    "page_count": 7,
+    "text_chars": 5074,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLN7UDXTLVSFFC2MO5TZOG6UELH": {
+    "lastModified": "2026-03-28T22:52:14Z",
+    "page_count": 1,
+    "text_chars": 990,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VJAV4UDLPO5MNDIJIM3MJWUGMPI": {
+    "lastModified": "2026-02-19T18:57:31Z",
+    "page_count": 1,
+    "text_chars": 1049,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPCL2DNOBFCC5BI52CWSL3IGRXK": {
+    "lastModified": "2026-03-04T18:41:24Z",
+    "page_count": 46,
+    "text_chars": 98417,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPXET7RGPDDCVGIRVFVYC3Q5V7E": {
+    "lastModified": "2026-05-22T21:40:02Z",
+    "page_count": 1,
+    "text_chars": 1414,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLHSZU6GQKTQNE2LACUE2ZC7TT6": {
+    "lastModified": "2026-02-19T18:57:29Z",
+    "page_count": 6,
+    "text_chars": 2147,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPAKPMFNPHKFVA26ENZ2CJ7IJIJ": {
+    "lastModified": "2026-06-05T13:27:42Z",
+    "page_count": 2,
+    "text_chars": 2858,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VODOIZ2F5REPZFK2KXJYTD7AEP3": {
+    "lastModified": "2026-06-05T13:27:24Z",
+    "page_count": 1,
+    "text_chars": 499,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VM3S4DWLSBBWJH2ZCP3CXG3GWAI": {
+    "lastModified": "2026-06-05T13:27:25Z",
+    "page_count": 2,
+    "text_chars": 2196,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPPJQXATSESKFEYPQENQRFQZ5EJ": {
+    "lastModified": "2026-06-05T13:27:26Z",
+    "page_count": 1,
+    "text_chars": 346,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VM3LC4NLJGWCVAIEUBEQ4YLUQPU": {
+    "lastModified": "2026-06-05T13:27:28Z",
+    "page_count": 1,
+    "text_chars": 2134,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VO3HCASVIUPYZCITTKYZZIC56CY": {
+    "lastModified": "2026-06-05T13:27:32Z",
+    "page_count": 2,
+    "text_chars": 2649,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VNR6EBSXDYLDBDLX27VKUF2VMUP": {
+    "lastModified": "2026-06-05T13:27:25Z",
+    "page_count": 1,
+    "text_chars": 2542,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPWZ6P432RTTRB3BPUEB5NPWE6K": {
+    "lastModified": "2026-06-05T13:27:14Z",
+    "page_count": 2,
+    "text_chars": 2307,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VOFUTPBAZE2VRAKFU4WZCHQOBOR": {
+    "lastModified": "2026-06-05T13:27:14Z",
+    "page_count": 2,
+    "text_chars": 2467,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLIKBCJUEOO5RDJAS5SNA7IPVCQ": {
+    "lastModified": "2026-06-27T15:14:34Z",
+    "page_count": 2,
+    "text_chars": 2037,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJ7IROIPH67TNEJEWZIZQIRQZNI": {
+    "lastModified": "2026-06-27T15:14:49Z",
+    "page_count": 1,
+    "text_chars": 1482,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMQVKLUFQ3KABE344HG46EA7I5Y": {
+    "lastModified": "2026-02-19T18:57:30Z",
+    "page_count": 1,
+    "text_chars": 3634,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPMJTC3OUTS6JDIMUQOBU7UXM44": {
+    "lastModified": "2026-02-19T18:57:29Z",
+    "page_count": 1,
+    "text_chars": 1049,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VOSDSKKEJF22JFZJRKJORAAAKDP": {
+    "lastModified": "2026-02-19T18:57:29Z",
+    "page_count": 17,
+    "text_chars": 8051,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKYF63OYV57XVD2JMUMMFKOUGTR": {
+    "lastModified": "2026-02-19T18:57:29Z",
+    "page_count": 2,
+    "text_chars": 5416,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMMUC7PSHNFIFA3IQEIX4HZP2WJ": {
+    "lastModified": "2026-03-04T21:52:44Z",
+    "page_count": 2,
+    "text_chars": 4532,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMFZQMPTVA6NJCJWFACDJ25OHER": {
+    "lastModified": "2026-03-05T16:32:24Z",
+    "page_count": 2,
+    "text_chars": 3975,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLZLSGZQ4NDVRGJ7YFMLQUTM5FS": {
+    "lastModified": "2026-02-19T18:57:28Z",
+    "page_count": 1,
+    "text_chars": 2732,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VIXFBHLM2HKABEZAYTH4L5YQQMO": {
+    "lastModified": "2026-02-19T18:57:28Z",
+    "page_count": 1,
+    "text_chars": 1244,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJWRFNR3ZUOSZBJMVGLWM7R3NMW": {
+    "lastModified": "2026-06-05T13:34:35Z",
+    "page_count": 2,
+    "text_chars": 5525,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJVWB5BXDEI2VA3YOTI4LLIN3BN": {
+    "lastModified": "2026-04-20T14:41:26Z",
+    "page_count": 1,
+    "text_chars": 1060,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKDTVEIGAAQK5BJMX43IOCDF3EE": {
+    "lastModified": "2026-02-19T18:57:33Z",
+    "page_count": 1,
+    "text_chars": 2498,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPPZ4JWK4D7CZD2Q6FJ25J75CPN": {
+    "lastModified": "2025-12-28T03:19:18Z",
+    "page_count": 3,
+    "text_chars": 1457,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VM3LUDIKP7VPFEZ6NURX26XNTIL": {
+    "lastModified": "2026-07-02T14:36:13Z",
+    "page_count": 2,
+    "text_chars": 5171,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLAJVG5XDWV5ZDJ5PMS5SDAGQHJ": {
+    "lastModified": "2025-12-28T03:19:17Z",
+    "page_count": 3,
+    "text_chars": 4542,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VIMHIFH4L4GVZHJY7Y5JWCM5XO3": {
+    "lastModified": "2025-12-28T03:19:17Z",
+    "page_count": 1,
+    "text_chars": 484,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VJYMNLMSWTRJZAZFNKVZ6RSSZIJ": {
+    "lastModified": "2025-12-28T03:19:16Z",
+    "page_count": 2,
+    "text_chars": 3274,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VK3VI25ECXNVFDYBCHGTLZJFXOB": {
+    "lastModified": "2026-01-08T22:17:10Z",
+    "page_count": 17,
+    "text_chars": 8051,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VOAXQJBMKJOA5C3PNU2ODWE37PO": {
+    "lastModified": "2026-07-01T23:08:33Z",
+    "page_count": 1,
+    "text_chars": 2317,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VKSLPZ3NCOLWJEK3BL63RJKOUYK": {
+    "lastModified": "2026-07-01T23:08:33Z",
+    "page_count": 2,
+    "text_chars": 4532,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJY3XNH3GWVUZA3ARLC5APOJALG": {
+    "lastModified": "2026-07-08T17:58:55Z",
+    "page_count": 1,
+    "text_chars": 236,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VI4UIBSLMJL45AZYECHIWQZLXNC": {
+    "lastModified": "2025-12-28T03:19:20Z",
+    "page_count": 1,
+    "text_chars": 308,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VNQG4Y7NXIIFFHL7WVU6KZUTAVJ": {
+    "lastModified": "2026-02-03T23:24:10Z",
+    "page_count": 1,
+    "text_chars": 1558,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMHNNAVWRJRARGJ6GPPMRUVDZUG": {
+    "lastModified": "2025-12-28T03:19:02Z",
+    "page_count": 1,
+    "text_chars": 1870,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VNAU2XM3YRRN5G2QULXFPUFV4IX": {
+    "lastModified": "2025-12-28T03:19:01Z",
+    "page_count": 2,
+    "text_chars": 3271,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VM5IVDMWRXZUVAIG4GJPN5VIUZ5": {
+    "lastModified": "2025-12-28T03:19:03Z",
+    "page_count": 2,
+    "text_chars": 1674,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VMKE2EIU7BWFNA2BGKFEYRR2ZJW": {
+    "lastModified": "2025-12-28T03:18:59Z",
+    "page_count": 1,
+    "text_chars": 1685,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJDCQFR3XK6TZD3JVGVRC7ODMON": {
+    "lastModified": "2025-12-28T03:18:58Z",
+    "page_count": 2,
+    "text_chars": 6608,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VIRDFPK6OHJIREJPLARIMHWDKMF": {
+    "lastModified": "2026-06-25T13:29:18Z",
+    "page_count": 1,
+    "text_chars": 984,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VM242FJUN7UNRF3YPWHHCEZD5O7": {
+    "lastModified": "2026-07-06T23:33:19Z",
+    "page_count": 2,
+    "text_chars": 419,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VOR5AK4L3GZVJGYHZMKYUGFB6UP": {
+    "lastModified": "2026-07-06T23:33:18Z",
+    "page_count": 3,
+    "text_chars": 2886,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLTYYB635Y4YZCJUU434OXEJQLQ": {
+    "lastModified": "2026-07-06T23:33:17Z",
+    "page_count": 2,
+    "text_chars": 2604,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VLEBXA4RJ7W3NCI3DNVPIMCGMIE": {
+    "lastModified": "2026-06-10T21:22:19Z",
+    "page_count": 1,
+    "text_chars": 775,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMBTLNYS47S3FG35CVJIILDSBLJ": {
+    "lastModified": "2026-03-05T23:47:33Z",
+    "page_count": 41,
+    "text_chars": 13165,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKLTK2PEDEILZDK3PPGNBRTIWY5": {
+    "lastModified": "2026-07-27T20:48:35Z",
+    "page_count": 1,
+    "text_chars": 588,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VIUHR2STKC26FC3DX6JD3ZYADPC": {
+    "lastModified": "2025-12-28T03:19:12Z",
+    "page_count": 3,
+    "text_chars": 6493,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKOWKIZY2J7EJDKYOK44FUPMXMN": {
+    "lastModified": "2025-12-28T03:19:13Z",
+    "page_count": 1,
+    "text_chars": 505,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VNSKACPHHNCTRALK57YQB3BDIDG": {
+    "lastModified": "2025-12-28T03:19:12Z",
+    "page_count": 7,
+    "text_chars": 9195,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VIE2SLD6WN42BDY4SRBJQAOM65M": {
+    "lastModified": "2025-12-28T03:19:14Z",
+    "page_count": 5,
+    "text_chars": 5422,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMGYL4LPSVMLNE3E3ZYUBX7XMHN": {
+    "lastModified": "2026-04-27T18:32:29Z",
+    "page_count": 1,
+    "text_chars": 679,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VJUQAVJKYJ3INGLRYXKVIU6Q6AZ": {
+    "lastModified": "2025-12-28T03:19:10Z",
+    "page_count": 1,
+    "text_chars": 1040,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VOISTCHLL4U2NDLT3LXA3EF2Y2Z": {
+    "lastModified": "2025-12-28T03:19:11Z",
+    "page_count": 1,
+    "text_chars": 455,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VPLFWGU7NN2GFA2SHQ2X7233WOM": {
+    "lastModified": "2025-12-28T03:19:10Z",
+    "page_count": 1,
+    "text_chars": 409,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJCKATL3WJKIJDZ7DKYAIMZBFZH": {
+    "lastModified": "2025-12-31T17:59:34Z",
+    "page_count": 1,
+    "text_chars": 352,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VJ22UMJSRRUABE2BRNBTQQVPFNT": {
+    "lastModified": "2026-03-04T21:49:14Z",
+    "page_count": 1,
+    "text_chars": 2941,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VML7T3ZIWEUDNAY7TDIGDJOBSUZ": {
+    "lastModified": "2026-05-24T00:24:46Z",
+    "page_count": 1,
+    "text_chars": 701,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VKTETYSBLIYF5DJDXXQNXVRAXP2": {
+    "lastModified": "2026-05-18T20:30:32Z",
+    "page_count": 1,
+    "text_chars": 1141,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMGX3S4UWWR3VFZ7O6CZVY5BFE2": {
+    "lastModified": "2026-05-22T21:42:08Z",
+    "page_count": 2,
+    "text_chars": 3359,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJ2BPENVJL365AKIEFO3WNQXRZE": {
+    "lastModified": "2026-05-22T21:42:08Z",
+    "page_count": 1,
+    "text_chars": 1447,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  },
+  "01HFF34VLA2KLUW73N5JFZGUABCN2JUFQ3": {
+    "lastModified": "2026-05-22T21:42:08Z",
+    "page_count": 34,
+    "text_chars": 19088,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VK2V576Z6CPN5EZX23PVZ7Y3TGX": {
+    "lastModified": "2026-07-06T23:33:57Z",
+    "page_count": 2,
+    "text_chars": 419,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VM7H3UZB33LUZAKJCFUA3HA5743": {
+    "lastModified": "2026-07-06T23:33:57Z",
+    "page_count": 3,
+    "text_chars": 2886,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VMUROJRLKUCLZBLXFM3F67K3IEZ": {
+    "lastModified": "2026-07-06T23:33:56Z",
+    "page_count": 2,
+    "text_chars": 2604,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VM2CZBOMNWZW5HLMJZ3PBFE557A": {
+    "lastModified": "2026-04-27T18:56:08Z",
+    "page_count": 1,
+    "text_chars": 566,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJIUPZJSXQWWJG2AL36GDR4STNJ": {
+    "lastModified": "2026-04-27T18:55:19Z",
+    "page_count": 1,
+    "text_chars": 497,
+    "extraction_method": "pdfplumber",
+    "needs_ocr": false
+  },
+  "01HFF34VJPQ6T6TZAUXRHJEO3KSQANKQOO": {
+    "lastModified": "2025-12-28T03:19:02Z",
+    "page_count": 2,
+    "text_chars": 1340,
+    "extraction_method": "easyocr",
+    "needs_ocr": false
+  }
+}
