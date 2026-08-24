@@ -3,6 +3,8 @@ import os
 import sys
 import subprocess
 
+from changelog import snapshot_before, record_run
+
 def run_script(script, args=None):
     cmd = [sys.executable, script]
     if args:
@@ -30,6 +32,8 @@ def main():
     os.environ['EXTRACT_TEXT'] = args.extract_text
 
     # Run each pipeline step
+    before_df = snapshot_before()
+
     print("Step 1: Download PDFs and extract text from SharePoint")
     run_script('sharepoint_graph_client.py')
 
@@ -50,6 +54,14 @@ def main():
 
     print("Step 7: Repair document links in Knack")
     run_script('repair_reentry_document_links.py')
+
+    entry = record_run(before_df)
+    print(f"\n{'='*70}")
+    print(f"Change Log: +{len(entry['added'])} added, "
+          f"~{len(entry['modified'])} modified, "
+          f"-{len(entry['removed'])} removed, "
+          f"{entry['unchanged_count']} unchanged")
+    print(f"{'='*70}")
 
     print("Pipeline completed successfully.")
 

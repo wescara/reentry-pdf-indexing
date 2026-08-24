@@ -8,6 +8,8 @@ import sys
 import pandas as pd
 import streamlit as st
 
+from changelog import snapshot_before, record_run, load_changelog
+
 # ---------------------
 # Config
 # ---------------------
@@ -130,6 +132,7 @@ st.subheader("⚙️ Pipeline")
 
 with st.expander("Run pipeline steps", expanded=False):
     if st.button("▶️ Run All Steps", type="primary"):
+        before_df = snapshot_before()
         progress = st.progress(0)
         for i, (label, script) in enumerate(PIPELINE_STEPS):
             st.write(f"**Step {i+1}/{len(PIPELINE_STEPS)}:** {label}")
@@ -147,8 +150,14 @@ with st.expander("Run pipeline steps", expanded=False):
             st.success(f"✓ {label}")
             progress.progress((i + 1) / len(PIPELINE_STEPS))
         else:
+            entry = record_run(before_df)
             st.balloons()
-            st.success("Pipeline completed successfully!")
+            st.success(
+                f"Pipeline completed! "
+                f"+{len(entry['added'])} added, "
+                f"~{len(entry['modified'])} modified, "
+                f"-{len(entry['removed'])} removed"
+            )
         load_index.clear()
 
     st.divider()
@@ -173,3 +182,48 @@ with st.expander("Run pipeline steps", expanded=False):
                 load_index.clear()
 
     st.caption("After running steps, refresh the page to see updated data.")
+
+# ---------------------
+# Change Log
+# ---------------------
+st.divider()
+st.subheader("📋 Change Log")
+
+changelog = load_changelog()
+if not changelog:
+    st.info("No pipeline runs recorded yet. Run the pipeline to start tracking changes.")
+else:
+    for entry in changelog[:10]:
+        ts = entry.get("timestamp", "unknown")
+        added = entry.get("added", [])
+        removed = entry.get("removed", [])
+        modified = entry.get("modified", [])
+        unchanged = entry.get("unchanged_count", 0)
+        total = entry.get("total_documents", 0)
+
+        has_changes = added or removed or modified
+        summary = (
+            f"+{len(added)} added, ~{len(modified)} modified, -{len(removed)} removed"
+            if has_changes else "No changes"
+        )
+
+        with st.expander(f"**{ts}** — {summary} ({total} total docs)"):
+            if added:
+                st.markdown("**Added:**")
+                for f in added:
+                    st.markdown(f"- 🟢 {f}")
+            if modified:
+                st.markdown("**Modified:**")
+                for f in modified:
+                    st.markdown(f"- 🟡 {f}")
+            if removed:
+                st.markdown("**Removed:**")
+                for f in removed:
+                    st.markdown(f"- 🔴 {f}")
+            if not has_changes:
+                st.markdown(f"All {unchanged} documents unchanged.")
+            dupes = entry.get("duplicates", [])
+            if dupes:
+                st.markdown("**\u26a0\ufe0f Duplicates in SharePoint** (same file in multiple folders):")
+                dupes_df = pd.DataFrame(dupes)
+                st.dataframe(dupes_df, use_container_width=True, hide_index=True)
