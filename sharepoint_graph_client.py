@@ -525,6 +525,46 @@ def local_path_for_item(download_dir: str, item: dict) -> str:
     return os.path.join(dest_dir, clean_filename)
 
 
+def prune_stale_local_folders(download_dir: str, expected_paths: set):
+    """
+    Remove local directories and files under download_dir that no longer exist on SharePoint.
+    expected_paths: set of absolute local file paths that should exist (from current SharePoint enumeration).
+    """
+    removed_files = 0
+    removed_dirs = 0
+    # Normalize expected paths for comparison
+    expected_norm = {os.path.normpath(p) for p in expected_paths}
+    # Also keep .txt companions of expected PDFs
+    expected_with_txt = expected_norm | {p + ".txt" for p in expected_norm}
+
+    # Remove orphan files (PDFs and .txt that aren't in the expected set)
+    for root, dirs, files in os.walk(download_dir, topdown=False):
+        for fname in files:
+            fpath = os.path.normpath(os.path.join(root, fname))
+            if fpath not in expected_with_txt:
+                try:
+                    os.remove(fpath)
+                    removed_files += 1
+                    logger.info(f"Removed stale file: {fpath}")
+                except OSError as ex:
+                    logger.warning(f"Failed to remove stale file {fpath}: {ex}")
+        # Remove empty directories
+        for dname in dirs:
+            dpath = os.path.join(root, dname)
+            try:
+                if not os.listdir(dpath):
+                    os.rmdir(dpath)
+                    removed_dirs += 1
+                    logger.info(f"Removed empty folder: {dpath}")
+            except OSError:
+                pass
+
+    if removed_files or removed_dirs:
+        print(f"  Cleanup: removed {removed_files} stale file(s) and {removed_dirs} empty folder(s)")
+    else:
+        logger.info("No stale files or empty folders to clean up.")
+
+
 def download_pdf_by_item_id(site_id: str, item_id: str, token: str, dest_path: str, timeout: int = DEFAULT_TIMEOUT):
     """
     Download file content via Graph: /sites/{siteId}/drive/items/{id}/content
@@ -744,9 +784,21 @@ def main():
                     "needs_ocr": needs_ocr,
                 }
 
+            # Prune stale cache entries (items no longer on SharePoint)
+            current_ids = {item["id"] for item in pdfs}
+            stale_ids = [k for k in file_cache if k not in current_ids]
+            for sid in stale_ids:
+                del file_cache[sid]
+            if stale_ids:
+                logger.info(f"Removed {len(stale_ids)} stale entries from file cache")
+
             save_file_cache(file_cache)
             if skipped:
                 print(f"\n=== Skipped {skipped}/{len(pdfs)} unchanged files ===")
+
+            # Remove local files/folders that no longer exist on SharePoint
+            expected_paths = {local_path_for_item(DOWNLOAD_DIR, item) for item in pdfs}
+            prune_stale_local_folders(DOWNLOAD_DIR, expected_paths)
 
             # Save text CSV
             save_pdfs_text_to_csv(text_rows)

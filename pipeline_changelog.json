@@ -1,5 +1,181 @@
 [
   {
+    "timestamp": "2026-08-24T13:37:19",
+    "total_documents": 155,
+    "added": [],
+    "removed": [],
+    "modified": [
+      "Oxbow Jail Hyperlink Info.pdf (Oxbow Jail, JRRP, EARS, Reignite)"
+    ],
+    "unchanged_count": 153,
+    "duplicates": [
+      {
+        "filename": "2021-SL-Summit-Health-Resource-List-FINAL-edit.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists/211 Info"
+      },
+      {
+        "filename": "2021-SL-Summit-Health-Resource-List-FINAL-edit.pdf",
+        "folder": "Oxbow Reentry/Homelessness/211 Info"
+      },
+      {
+        "filename": "2024-Salt-Lake-Area-Food-Resource-List.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists/211 Info"
+      },
+      {
+        "filename": "2024-Salt-Lake-Area-Food-Resource-List.pdf",
+        "folder": "Oxbow Reentry/Homelessness/211 Info"
+      },
+      {
+        "filename": "Community-Resources-Guide.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists"
+      },
+      {
+        "filename": "Community-Resources-Guide.pdf",
+        "folder": "Oxbow Reentry/Homelessness/End Utah Homelessness Community Resource Guide"
+      },
+      {
+        "filename": "Do Good Today Presentation January 2026.pdf",
+        "folder": "Oxbow Reentry/Homelessness/Do Good Today"
+      },
+      {
+        "filename": "Do Good Today Presentation January 2026.pdf",
+        "folder": "Oxbow Reentry/Homelessness/Valley Behavioral Health Homeless-Housing Resources"
+      },
+      {
+        "filename": "How a former youth hostel was flipped into a key housing need in Salt Lake County.pdf",
+        "folder": "Oxbow Reentry/Health (Mental)/Women's Mental Health Housing"
+      },
+      {
+        "filename": "How a former youth hostel was flipped into a key housing need in Salt Lake County.pdf",
+        "folder": "Oxbow Reentry/Women’s Resources/Women's Mental Health Housing"
+      },
+      {
+        "filename": "Ruff Haven.pdf",
+        "folder": "Oxbow Reentry/Homelessness"
+      },
+      {
+        "filename": "Ruff Haven.pdf",
+        "folder": "Oxbow Reentry/Housing"
+      },
+      {
+        "filename": "Ruff Haven.pdf",
+        "folder": "Oxbow Reentry/Reentry Info for Ministering Couples"
+      },
+      {
+        "filename": "SL Cnty Resource Fair.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists"
+      },
+      {
+        "filename": "SL Cnty Resource Fair.pdf",
+        "folder": "Oxbow Reentry/Education and Training"
+      },
+      {
+        "filename": "SL Cnty Resource Fair.pdf",
+        "folder": "Oxbow Reentry/Employment"
+      },
+      {
+        "filename": "SL Cnty Resource Fair.pdf",
+        "folder": "Oxbow Reentry/Homelessness"
+      },
+      {
+        "filename": "SL Cnty Resource Fair.pdf",
+        "folder": "Oxbow Reentry/Housing"
+      },
+      {
+        "filename": "SL Cnty Resource Fair.pdf",
+        "folder": "Oxbow Reentry/Reentry Info for Ministering Couples"
+      },
+      {
+        "filename": "SL County General Resource List.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists/211 Info"
+      },
+      {
+        "filename": "SL County General Resource List.pdf",
+        "folder": "Oxbow Reentry/Homelessness/211 Info"
+      },
+      {
+        "filename": "Salt Lake Valley Transition Branch Information.pdf",
+        "folder": "Oxbow Reentry/Church Incarceration Resources"
+      },
+      {
+        "filename": "Salt Lake Valley Transition Branch Information.pdf",
+        "folder": "Oxbow Reentry/Sex Offender Resources"
+      },
+      {
+        "filename": "Salt Lake Valley Transition Branch Information.pdf",
+        "folder": "Oxbow Reentry/West Valley City Transition Branches"
+      },
+      {
+        "filename": "Salt-Lake-Area-Dental-Resource-List-2024-FINAL.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists/211 Info"
+      },
+      {
+        "filename": "Salt-Lake-Area-Dental-Resource-List-2024-FINAL.pdf",
+        "folder": "Oxbow Reentry/Homelessness/211 Info"
+      },
+      {
+        "filename": "Salt-Lake-Area-Homeless-Resource-List-FINAL-2024.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists/211 Info"
+      },
+      {
+        "filename": "Salt-Lake-Area-Homeless-Resource-List-FINAL-2024.pdf",
+        "folder": "Oxbow Reentry/Homelessness/211 Info"
+      },
+      {
+        "filename": "TSO List of Homeless Resources.pdf",
+        "folder": "Oxbow Reentry/Homelessness"
+      },
+      {
+        "filename": "TSO List of Homeless Resources.pdf",
+        "folder": "Oxbow Reentry/TSO and Church Support for Homeless Shelters"
+      },
+      {
+        "filename": "VBH Resources.pdf",
+        "folder": "Oxbow Reentry/Health (Mental)/Valley Behavioral Health"
+      },
+      {
+        "filename": "VBH Resources.pdf",
+        "folder": "Oxbow Reentry/Homelessness/Valley Behavioral Health Homeless-Housing Resources"
+      },
+      {
+        "filename": "WVC (1st) Transition Branch.pdf",
+        "folder": "Oxbow Reentry/Church Incarceration Resources"
+      },
+      {
+        "filename": "WVC (1st) Transition Branch.pdf",
+        "folder": "Oxbow Reentry/Sex Offender Resources"
+      },
+      {
+        "filename": "WVC (1st) Transition Branch.pdf",
+        "folder": "Oxbow Reentry/West Valley City Transition Branches"
+      },
+      {
+        "filename": "WVC (2nd) Transition Branch.pdf",
+        "folder": "Oxbow Reentry/Church Incarceration Resources"
+      },
+      {
+        "filename": "WVC (2nd) Transition Branch.pdf",
+        "folder": "Oxbow Reentry/Sex Offender Resources"
+      },
+      {
+        "filename": "WVC (2nd) Transition Branch.pdf",
+        "folder": "Oxbow Reentry/West Valley City Transition Branches"
+      },
+      {
+        "filename": "medical-resources.pdf",
+        "folder": "Oxbow Reentry/Community Resource Lists"
+      },
+      {
+        "filename": "medical-resources.pdf",
+        "folder": "Oxbow Reentry/Health (Physical)"
+      },
+      {
+        "filename": "medical-resources.pdf",
+        "folder": "Oxbow Reentry/Oxbow Jail, JRRP, EARS, Reignite"
+      }
+    ]
+  },
+  {
     "timestamp": "2026-08-24T11:47:02",
     "total_documents": 150,
     "added": [],
