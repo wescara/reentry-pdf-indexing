@@ -8,6 +8,7 @@ What it does:
 - Resolves SharePoint item IDs from current URL path (preferred) or CSV file_id fallback
 - Creates anonymous links via Microsoft Graph createLink
 - Updates field_176 with the anonymous URL
+- Synchronizes anonymous Knack URLs back to search_index_full.csv
 
 Usage:
   python repair_reentry_document_links.py
@@ -20,6 +21,8 @@ import logging
 import os
 import re
 import time
+import tempfile
+from collections import Counter
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import unquote, urlparse
 
@@ -197,6 +200,61 @@ def update_knack_url(record_id: str, url: str) -> None:
     resp.raise_for_status()
 
 
+def sync_csv_urls(records: List[Dict], dry_run: bool = False) -> int:
+    """Sync uniquely matched anonymous URLs without changing other index fields."""
+    with open(SEARCH_INDEX_FULL, newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        fields = reader.fieldnames
+        if not fields or not {"filename", "parent_category", "web_url"}.issubset(fields):
+            raise ValueError(f"{SEARCH_INDEX_FULL}: missing required URL synchronization columns")
+        rows = list(reader)
+
+    def key(filename: str, category: str) -> Tuple[str, str]:
+        return filename.strip().lower(), category.strip().lower()
+
+    live: Dict[Tuple[str, str], List[str]] = {}
+    for record in records:
+        url = get_record_url(record)
+        if is_anonymous_url(url):
+            match = key(record.get(FIELD_FILENAME) or "", record.get(FIELD_CATEGORY) or "")
+            live.setdefault(match, []).append(url)
+
+    counts = Counter(key(row["filename"], row["parent_category"]) for row in rows)
+    updated = 0
+    for row in rows:
+        match = key(row["filename"], row["parent_category"])
+        urls = live.get(match, [])
+        if row["web_url"] in urls:
+            continue
+        if not urls:
+            if not is_anonymous_url(row["web_url"]):
+                logger.warning("Cannot synchronize %s (%s): no anonymous Knack URL available", *match)
+            continue
+        if len(urls) != 1 or counts[match] != 1 or not all(match):
+            raise ValueError(f"Cannot safely synchronize ambiguous index entry: {match}")
+        row["web_url"] = urls[0]
+        updated += 1
+
+    if updated and not dry_run:
+        temporary_path = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w", newline="", encoding="utf-8",
+                dir=os.path.dirname(os.path.abspath(SEARCH_INDEX_FULL)),
+                prefix=".link-sync-", suffix=".csv", delete=False,
+            ) as handle:
+                temporary_path = handle.name
+                writer = csv.DictWriter(handle, fieldnames=fields)
+                writer.writeheader()
+                writer.writerows(rows)
+            os.replace(temporary_path, SEARCH_INDEX_FULL)
+        finally:
+            if temporary_path and os.path.exists(temporary_path):
+                os.remove(temporary_path)
+    logger.info("%s local index URL(s): %s", "Would synchronize" if dry_run else "Synchronized", updated)
+    return updated
+
+
 def repair_links(dry_run: bool = False) -> Dict[str, int]:
     graph_headers = get_graph_headers()
     site_id = resolve_site_id(graph_headers)
@@ -246,29 +304,33 @@ def repair_links(dry_run: bool = False) -> Dict[str, int]:
         if dry_run:
             logger.info("DRY RUN would update %s (%s)", record_id, filename)
             fixed += 1
+            record[f"{FIELD_URL}_raw"] = {"url": anon_url}
         else:
             try:
                 update_knack_url(record_id, anon_url)
                 logger.info("Updated %s (%s)", record_id, filename)
                 fixed += 1
+                record[f"{FIELD_URL}_raw"] = {"url": anon_url}
             except Exception as exc:
                 logger.warning("Failed to update %s (%s): %s", record_id, filename, exc)
                 failed += 1
 
         time.sleep(0.15)
 
+    csv_updated = sync_csv_urls(records, dry_run=dry_run)
     return {
         "total": len(records),
         "to_fix": len(to_fix),
         "fixed": fixed,
         "skipped": skipped,
         "failed": failed,
+        "csv_updated": csv_updated,
     }
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Repair non-anonymous Reentry document links in Knack")
-    parser.add_argument("--dry-run", action="store_true", help="Preview updates without writing to Knack")
+    parser.add_argument("--dry-run", action="store_true", help="Preview updates without writing to Knack or the local index")
     args = parser.parse_args()
 
     summary = repair_links(dry_run=args.dry_run)

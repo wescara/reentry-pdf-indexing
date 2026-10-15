@@ -169,6 +169,11 @@ If you see "No file ID available", check that `build_search_index.py` is outputt
 
 ## Performance Notes
 
+The final document-link repair step also synchronizes anonymous Knack URLs back
+to `search_index_full.csv`, including URLs repaired in earlier runs. It matches
+filename plus category and refuses ambiguous updates. `--dry-run` previews both
+Knack and local index changes without writing either.
+
 ### Category naming
 
 The SharePoint folder `Courts (Navigating Court Cases)` maps to the existing
