@@ -138,7 +138,10 @@ def is_missing_link(record: Dict, url_field: str) -> bool:
 
 
 def get_folder_item_id(site_id: str, category_name: str, graph_headers: Dict[str, str]) -> Optional[str]:
-    folder_rel = f"Oxbow Reentry/{category_name}"
+    folder_name = {
+        "Courts (How to Navigate Court Cases)": "Courts (Navigating Court Cases)",
+    }.get(category_name, category_name)
+    folder_rel = f"Oxbow Reentry/{folder_name}"
     folder_path = quote(folder_rel, safe="/")
     resp = requests.get(
         f"https://graph.microsoft.com/v1.0/sites/{site_id}/drive/root:/{folder_path}",

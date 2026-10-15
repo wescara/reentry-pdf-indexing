@@ -174,6 +174,7 @@ CANONICAL_CATEGORY_BY_NORMALIZED = {
 }
 # Prefer typographic apostrophe for output consistency.
 CANONICAL_CATEGORY_BY_NORMALIZED["Women's Resources"] = "Women’s Resources"
+CANONICAL_CATEGORY_BY_NORMALIZED["Courts (Navigating Court Cases)"] = "Courts (How to Navigate Court Cases)"
 
 
 def clean_extracted_text(text: str) -> str:
@@ -276,7 +277,8 @@ def extract_parent_category(parent_path: str) -> Optional[str]:
     
     # Skip "Oxbow Reentry" and get the next part
     if len(parts) > 1 and parts[0] == "Oxbow Reentry":
-        return parts[1]
+        category = parts[1]
+        return CANONICAL_CATEGORY_BY_NORMALIZED.get(normalize_category_name(category), category)
     
     return None
 

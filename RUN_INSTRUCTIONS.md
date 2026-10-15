@@ -169,6 +169,13 @@ If you see "No file ID available", check that `build_search_index.py` is outputt
 
 ## Performance Notes
 
+### Category naming
+
+The SharePoint folder `Courts (Navigating Court Cases)` maps to the existing
+Knack category `Courts (How to Navigate Court Cases)`. Keep that original category;
+do not create a second Courts category to match the folder name. Category-link
+repair resolves the original category name back to the actual SharePoint folder.
+
 - **Download + Extract:** ~3 min for 64 PDFs (depends on file sizes)
 - **Index Building:** ~1-2 min (sequential processing)
 - **Anonymous Link Generation:** ~1 min (with 0.5s rate limiting per file)
