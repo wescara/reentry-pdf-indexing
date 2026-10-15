@@ -36,10 +36,6 @@ import requests
 from msal import ConfidentialClientApplication
 from dotenv import load_dotenv, find_dotenv
 import pdfplumber
-import easyocr
-import numpy as np
-from PIL import Image
-import io
 
 # Suppress pdfplumber font descriptor warnings (harmless warnings about malformed PDF font metadata)
 warnings.filterwarnings('ignore', message='Could get FontBBox from font descriptor')
@@ -475,6 +471,16 @@ def sanitize_filename(filename: str) -> str:
 # File Cache (skip unchanged files)
 # ----------------------------
 CACHE_FILE = ".file_cache.json"
+_OCR_READER: Any | None = None
+
+
+def get_ocr_reader() -> Any:
+    global _OCR_READER
+    if _OCR_READER is None:
+        import easyocr
+
+        _OCR_READER = easyocr.Reader(['en'], gpu=False, verbose=False)
+    return _OCR_READER
 
 
 def load_file_cache() -> dict:
@@ -606,8 +612,9 @@ def extract_text_from_pdf(file_path: str) -> Tuple[int, int, str, str]:
             # Not enough text - try OCR
             logger.info(f"Low text extraction ({len(full_text)} chars in {pages} pages). Attempting OCR...")
             try:
-                # Initialize OCR reader (English only for speed, adjust if needed)
-                reader = easyocr.Reader(['en'], gpu=False, verbose=False)
+                import numpy as np
+
+                reader = get_ocr_reader()
                 ocr_chunks = []
                 
                 for i, page in enumerate(pdf.pages):
